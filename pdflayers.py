@@ -31,14 +31,12 @@ def set_layer_visibility(pdf, layers_to_show):
         sys.exit(1)
 
     ocgs_on = []
-    ocgs_off = []
     for ocg in ocgs:
         if ocg.Name in layers_to_show:
             logging.info("Layer %s will be visible.", ocg.Name)
             ocgs_on.append(ocg)
         else:
             logging.info("Layer %s will be hidden.", ocg.Name)
-            ocgs_off.append(ocg)
 
     ocgs_config = pikepdf.Dictionary(
         BaseState=pikepdf.Name('/OFF'),
@@ -52,12 +50,11 @@ def set_layer_visibility(pdf, layers_to_show):
     )
 
     # Needed for the PDF viwer in google-chrome (at least):
-    # TODO: Set PrintState and ExportState too..? Exception+ handling...
-    # Check PDF reference. Maybe better to just delete ViewState..?
-    for ocg in ocgs_on:
-        ocg.Usage.View.ViewState = pikepdf.Name('/ON')
-    for ocg in ocgs_off:
-        ocg.Usage.View.ViewState = pikepdf.Name('/OFF')
+    for ocg in ocgs:
+        if '/View' in ocg.Usage:
+            del ocg.Usage.View
+        if '/Print' in ocg.Usage:
+            del ocg.Usage.Print
 
 
 def main():
