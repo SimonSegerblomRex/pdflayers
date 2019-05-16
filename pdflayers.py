@@ -1,15 +1,10 @@
 #!/usr/bin/env python3
 """Script for editing PDF to change layer (OCG) visibility.
 
-The output should display correctly in the PDF viwer in google-chrome,
+The output should display correctly in google-chrome,
 evince, okular, and Adobe Reader (with JavaScript disabled).
 
 pdf.js in firefox might not work: https://github.com/mozilla/pdf.js/issues/4841
-
-Requirements:
-Install pikepdf:
-  pip3 install --user pikepdf
-and run the script with python3.
 
 References:
   https://www.adobe.com/content/dam/acom/en/devnet/pdf/pdf_reference_archive/PDFReference16.pdf
@@ -49,7 +44,7 @@ def set_layer_visibility(pdf, layers_to_show):
         OCGs=ocgs,
     )
 
-    # Needed for the PDF viwer in google-chrome (at least):
+    # Needed for google-chrome (at least):
     for ocg in ocgs:
         if '/View' in ocg.Usage:
             del ocg.Usage.View
