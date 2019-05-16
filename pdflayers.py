@@ -43,6 +43,7 @@ def set_layer_visibility(pdf, layers_to_show):
     ocgs_config = pikepdf.Dictionary(
         BaseState=pikepdf.Name('/OFF'),
         ON=ocgs_on,
+        Order=ocgs,
     )
 
     pdf.root.OCProperties = pikepdf.Dictionary(
