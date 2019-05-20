@@ -8,7 +8,7 @@ Installation
 ------------
 
 ```shell
-python3 -m pip install --user https://github.com/SimonSegerblomRex/pdflayers
+python3 -m pip install --user git+https://github.com/SimonSegerblomRex/pdflayers
 ```
 
 Usage
