@@ -10,7 +10,7 @@ def _readme():
 
 setuptools.setup(
     name='pdflayers',
-    version='0.1.1',
+    version='0.2.0',
     author='Simon Segerblom Rex',
     description='PDF layer handling.',
     long_description=_readme(),
