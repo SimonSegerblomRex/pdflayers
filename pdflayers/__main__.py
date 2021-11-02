@@ -15,7 +15,7 @@ import logging
 
 import pikepdf
 
-from pdflayers import utils
+from pdflayers.utils import set_layers
 
 logger = logging.getLogger(__name__)
 
@@ -34,13 +34,15 @@ def main():
                         help='user password (for encrypted files)')
     parser.add_argument('--show', nargs='+', default=(),
                         help='layers to be visible in output')
+    parser.add_argument('--remove', nargs='+', default=(),
+                        help='layers to be removed in output')
     parser.add_argument('--qdf', action='store_true',
                         help='Use qdf to save the output. (Debug option)')
     args = parser.parse_args()
 
     pdf = pikepdf.open(args.input, password=args.password)
 
-    utils.set_layer_visibility(pdf, args.show)
+    set_layers(pdf, args.show, args.remove)
     pdf.remove_unreferenced_resources()
 
     save_options = {
@@ -50,7 +52,6 @@ def main():
     }
 
     pdf.save(args.output, **save_options)
-
 
 if __name__ == "__main__":
     main()
