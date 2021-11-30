@@ -34,8 +34,8 @@ def main():
                         help='user password (for encrypted files)')
     parser.add_argument('--show', nargs='+', default=(),
                         help='layers to be visible in output')
-    parser.add_argument('--remove', nargs='+', default=(),
-                        help='layers to be removed in output')
+    parser.add_argument('--hide', nargs='+', default=(),
+                        help='layers to be hidden in output')
     parser.add_argument('--qdf', action='store_true',
                         help='Use qdf to save the output. (Debug option)')
     args = parser.parse_args()
@@ -52,6 +52,7 @@ def main():
     }
 
     pdf.save(args.output, **save_options)
+
 
 if __name__ == "__main__":
     main()

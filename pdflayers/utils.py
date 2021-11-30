@@ -29,7 +29,7 @@ def set_layers(pdf, layers_to_show, layers_to_remove):
                 logger.info("Layer %s will be hidden.", ocg.Name)
                 ocgs_keep.append(ocg)
             else:
-                logger.info("Layer %s will be removed.", ocg.Name)
+                logger.info("Layer %s will be hidden.", ocg.Name)
 
     ocgs_config = pikepdf.Dictionary(
         BaseState=pikepdf.Name('/OFF'),
