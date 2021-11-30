@@ -7,7 +7,7 @@ import pikepdf
 logger = logging.getLogger(__name__)
 
 
-def set_layers(pdf, layers_to_show, layers_to_remove):
+def set_layers(pdf, layers_to_show, layers_to_hide):
     """Set visibility of layers."""
     try:
         ocgs = pdf.root.OCProperties.OCGs
@@ -25,7 +25,7 @@ def set_layers(pdf, layers_to_show, layers_to_remove):
             ocgs_on.append(ocg)
             ocgs_keep.append(ocg)
         else:
-            if ocg.Name not in layers_to_remove:
+            if ocg.Name not in layers_to_hide:
                 logger.info("Layer %s will be hidden.", ocg.Name)
                 ocgs_keep.append(ocg)
             else:

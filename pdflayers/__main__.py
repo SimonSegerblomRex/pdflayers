@@ -42,7 +42,7 @@ def main():
 
     pdf = pikepdf.open(args.input, password=args.password)
 
-    set_layers(pdf, args.show, args.remove)
+    set_layers(pdf, args.show, args.hide)
     pdf.remove_unreferenced_resources()
 
     save_options = {
