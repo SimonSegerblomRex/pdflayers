@@ -10,8 +10,7 @@ logger = logging.getLogger(__name__)
 def set_layers(pdf, layers_to_show, layers_to_hide):
     """Set visibility of layers."""
     try:
-        ocgs = pdf.root.OCProperties.OCGs
-
+        ocgs = pdf.Root.OCProperties.OCGs
     except (AttributeError, KeyError):
         logger.error("Unable to locate layers in PDF.")
         sys.exit(1)
@@ -37,7 +36,7 @@ def set_layers(pdf, layers_to_show, layers_to_hide):
         Order=ocgs_keep,
     )
 
-    pdf.root.OCProperties = pikepdf.Dictionary(
+    pdf.Root.OCProperties = pikepdf.Dictionary(
         D=ocgs_config,
         OCGs=ocgs,
     )
